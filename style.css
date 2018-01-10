@@ -1,0 +1,64 @@
+h2{
+  font-weight: bold;
+  font-family: 'Bungee', cursive;
+  font-size: 2em;
+  margin: 5px 3% -25px 2%;
+}
+body {
+  background-color: lightgrey;
+  font-family: 'Rubik', sans-serif;
+}
+
+.img-card {
+  width: 12.5%;
+  display: inline-block;
+  margin: 2%;
+  cursor: pointer;
+}
+.img {
+  width: 100%;
+}
+.img:hover, .reset:hover {
+  box-shadow: 3px 3px 7px rgba(0,0,0,0.3);
+}
+.img:hover, .reset:active {
+  box-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+}
+.game-wrap, .title-wrap, .btn-wrap {
+  width: 90%;
+  margin: 0 auto;
+}
+.reset {
+  background-color: maroon;
+  color: white;
+  /* width: 100%; */
+  text-align: center;
+  cursor: pointer;
+}
+.btn-text {
+  margin: 5px 0px;
+  padding: 5px 0px;
+}
+.controls, .sub-title, .reset {
+  margin: 5px 3% 0 2%;
+}
+.disclaim {
+  font-size: 11px;
+}
+
+@media(min-width: 600px){
+  /* tablet media responsive */
+  .game-wrap, .title-wrap, .btn-wrap {
+    width: 70%;
+  }
+  .reset {
+    width: 30%;
+    display: inline-block;
+  }
+}
+@media(min-width: 900px){
+  /* Desktop/laptop responsive */
+  .game-wrap, .title-wrap, .btn-wrap {
+    width: 50%;
+  }
+}
