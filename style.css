@@ -2,7 +2,7 @@ h2{
   font-weight: bold;
   font-family: 'Bungee', cursive;
   font-size: 2em;
-  margin: 5px 3% -25px 2%;
+  margin: 5px 3% -15px 2%;
 }
 body {
   background-color: lightgrey;
@@ -48,6 +48,9 @@ body {
 
 @media(min-width: 600px){
   /* tablet media responsive */
+  h2{
+    margin: 5px 3% -25px 2%;
+  }
   .game-wrap, .title-wrap, .btn-wrap {
     width: 70%;
   }
@@ -59,6 +62,6 @@ body {
 @media(min-width: 900px){
   /* Desktop/laptop responsive */
   .game-wrap, .title-wrap, .btn-wrap {
-    width: 50%;
+    width: 45%;
   }
 }
