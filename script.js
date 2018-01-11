@@ -1,27 +1,28 @@
 $(document).ready(function(){
   var images = [
-    {"url": "imgs/apple.jpg",        "id": 1,  "description": "apple"},
-    {"url": "imgs/balloons.jpg",     "id": 2,  "description": "balloons"},
-    {"url": "imgs/bananas.jpg",      "id": 3,  "description": "bananas"},
-    {"url": "imgs/bottle.jpg",       "id": 4,  "description": "bottle"},
-    {"url": "imgs/bread.jpg",        "id": 5,  "description": "bread"},
-    {"url": "imgs/cork.jpg",         "id": 6,  "description": "cork"},
-    {"url": "imgs/euro.jpg",         "id": 7,  "description": "euro"},
-    {"url": "imgs/frog.jpg",         "id": 8,  "description": "frog"},
-    {"url": "imgs/pepper.jpg",       "id": 9,  "description": "pepper"},
-    {"url": "imgs/piggy-bank.jpg",   "id": 10, "description": "piggy-bank"},
-    {"url": "imgs/snowboard.jpg",    "id": 11, "description": "snowboard"},
-    {"url": "imgs/soccer.jpg",       "id": 12, "description": "soccer"},
-    {"url": "imgs/water.jpg",        "id": 13, "description": "water"},
-    {"url": "imgs/world.jpg",        "id": 14, "description": "world"},
-    {"url": "imgs/dog.jpg",          "id": 15, "description": "dog"}
+    {"url": "media/apple.jpg",        "id": 1,  "description": "apple"},
+    {"url": "media/balloons.jpg",     "id": 2,  "description": "balloons"},
+    {"url": "media/bananas.jpg",      "id": 3,  "description": "bananas"},
+    {"url": "media/bottle.jpg",       "id": 4,  "description": "bottle"},
+    {"url": "media/bread.jpg",        "id": 5,  "description": "bread"},
+    {"url": "media/cork.jpg",         "id": 6,  "description": "cork"},
+    {"url": "media/euro.jpg",         "id": 7,  "description": "euro"},
+    {"url": "media/frog.jpg",         "id": 8,  "description": "frog"},
+    {"url": "media/pepper.jpg",       "id": 9,  "description": "pepper"},
+    {"url": "media/piggy-bank.jpg",   "id": 10, "description": "piggy-bank"},
+    {"url": "media/snowboard.jpg",    "id": 11, "description": "snowboard"},
+    {"url": "media/soccer.jpg",       "id": 12, "description": "soccer"},
+    {"url": "media/water.jpg",        "id": 13, "description": "water"},
+    {"url": "media/world.jpg",        "id": 14, "description": "world"},
+    {"url": "media/dog.jpg",          "id": 15, "description": "dog"}
   ];
   var pattern = [
-    {"url": "imgs/pattern1.jpg",     "description": "pattern1"},
-    {"url": "imgs/pattern2.jpg",     "description": "pattern2"},
-    {"url": "imgs/pattern3.jpg",     "description": "pattern3"},
-    {"url": "imgs/pattern4.jpg",     "description": "pattern4"}
-  ]
+    {"url": "media/pattern1.jpg",     "description": "pattern1"},
+    {"url": "media/pattern2.jpg",     "description": "pattern2"},
+    {"url": "media/pattern3.jpg",     "description": "pattern3"},
+    {"url": "media/pattern4.jpg",     "description": "pattern4"}
+  ];
+
   var count = 0;
   var midArr;
   var check = pattern[0].url;
@@ -47,6 +48,7 @@ $(document).ready(function(){
   };
 
   function converge(a){
+    $(".media").remove();
     midArr = [];
     images.forEach(function(x){
       midArr.push(x);
@@ -56,7 +58,7 @@ $(document).ready(function(){
 
   $('.reset').on('click', function(){
     converge(images);
-  })
+  });
 
   function shuffle(midArry) {
     $(".img-card").html(null);
@@ -84,29 +86,28 @@ $(".img-card").on("click", function(){
     $(this).data().obj.status = 1;
     arrPair.push("#img" + $(this).data().obj.count)
     if(arrPair.length === 2){
-      var timeout = setTimeout(pairCalc, 1000);
+      var timeout = setTimeout(pairCalc, 500);
     };
   };
-  // console.log($(this).data().obj.id);
 });
 
 function pairCalc(){
   var q = arrPair;
   var z = [];
   arrPair = [];
-  console.log("hi")
   q.forEach(function(a){
     z.push($(a).data().obj.id);
-  })
+  });
   if (z[0] === z[1]){
+    end();
     return console.log("correct!");
   } else {
     q.forEach(function(a){
       $(a).html('<img class="img" src=' + check + ' alt="Memory Game">');
       $(a).data().obj.status = 0;
-    })
-  }
-}
+    });
+  };
+};
 
 $(".target").on("click", function(){
 
@@ -116,10 +117,22 @@ $(".target").on("click", function(){
       if(x.description === check){
         check = x.url;
         converge(images);
-      }
-    })
-  })
+      };
+    });
+  });
 });
 
+function end(){
+  var clean = 0;
+  count = 0;
+  images.forEach(function(a){
+    count++;
+    clean += $("#img"+ count).data().obj.status;
+  });
+  if (clean === 30){
+    $(".game-wrap").append('<div class="media"><img class="firework" src="media/giphy.webp"><audio id="cheer" src="media/cheer.mp3"><source src="media/cheer.mp3" type="audio/mpeg"></audio></div>')
+    document.getElementById("cheer").play();
+  }
+}
 
 });
